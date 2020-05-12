@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import FeelingsMenu from './components/FeelingsMenu/FeelingsMenu'
+import Schedule from './components/Schedule/Schedule'
+import AngryFeeling from './components/AngryFeeling/AngryFeeling'
+import Navbar from './components/Navbar'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <h1>First Change</h1>
+      
+      <FeelingsMenu />
+      <Schedule />
+      <AngryFeeling />
+
+
     </div>
-  );
+  )
 }
 
 export default App;
