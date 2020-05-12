@@ -10,6 +10,7 @@ function App() {
     <div className="App">
       <Navbar />
       <h1>First Change</h1>
+      <h2>this is the first branch</h2>
       
       <FeelingsMenu />
       <Schedule />
