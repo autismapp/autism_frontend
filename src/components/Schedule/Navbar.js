@@ -1,9 +1,14 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
+
+
+
+
 
 
 function Navbar() {
     return (
-      <div class="App">
+      <div class="Navbar">
   
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
               <a className="navbar-brand" href="#">Autism APP</a>
@@ -31,3 +36,5 @@ function Navbar() {
   }
   
   export default Navbar;
+
+  
