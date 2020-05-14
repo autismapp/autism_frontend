@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import Activity from './Activity';
 import ScheduleTask from './ScheduleTask';
+//import { act } from '@testing-library/react';
 //import ScheduleTask from './ScheduleTask'
 
 
 function Schedule() {
 
 
-  const [activities, setTasks] = useState([
+  
+  const [activities] = useState([
 
     {
       id: 1,
@@ -28,21 +30,12 @@ function Schedule() {
 
   ])
 
+  const [showResults, setShowResults] = useState(false)
+
+  const handleAddActivity = () => setShowResults(true)
 
 
-
-  function handleAddActivity() {
-    activities.map((activity) => {
-      console.log(activity)
-      console.log(activity.src)
-      return activity;
-
-    });
-  }
-
-
-
-  const [ScheduleTasks, setTasks1] = useState([
+  const [ScheduleTasks, setTasks] = useState([
     {
       id: 1,
       text: "breakfast",
@@ -64,16 +57,31 @@ function Schedule() {
   ])
 
 
+  const markTaskCompleted = (id) =>{
+    
+    const completedTask = ScheduleTasks.map((task)=>{
+      if(task.id ===id ){
+        task.Completed = true;
+      }
+      return task;
+    })
 
-  /* {activities.map((activity) =>{
-  
-                      return <Activity
-                      key = {activity.id}
-                      text={activity.text}
-                       src ={activity.src}
-  
-                        />
-                        })}*/
+    setTasks(completedTask)
+  }
+
+
+  const deleteTask = (id) =>{
+
+    const filteredTasks = ScheduleTasks.filter((task)=>{
+      if(task.id === id){
+        return false;
+      }else{
+        return true;
+      }
+    })
+      // update the state with the new array
+    setTasks(filteredTasks)
+  }
 
   return (
 
@@ -94,27 +102,36 @@ function Schedule() {
         <div className="row">
           <div className="col col-12">
 
-
-            Photos of the activities, when you press the button Add activity 
-            you can see here the pictures, of the activities that you can choose to add in your Schedule
-
-
+          
+            { showResults ? 
+              activities.map((act)=>{
+                return <Activity 
+                key = {act.id}
+                id = {act.id}
+                src = {act.src}
+                />
+                
+              }) : null }
 
           </div>
-
         </div>
+
       <h1>Schedule</h1>
 
         {ScheduleTasks.map((task)=>{
 
             return <ScheduleTask
+
+            deleteTaskFunc={deleteTask}
+            updateTaskFunc={markTaskCompleted}
             key = {task.id}
+            id ={task.id}
             text = {task.text}
             src = {task.src}
             completed = {task.Completed}
           />
         })}
-      
+        
       
       </div>
 

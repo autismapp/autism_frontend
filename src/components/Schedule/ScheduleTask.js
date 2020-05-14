@@ -3,34 +3,40 @@ import React from 'react';
 
 
 
-function ScheduleTask(props) {
+function ScheduleTask (props){
 
+    
+    const handleClickCompleted = ()=>{
+        props.updateTaskFunc(props.id)
 
-
-    const handleClick = () => {
-        console.log("buttom pressed")
     }
 
+    const handleClickDelete = ()=>{
+        props.deleteTaskFunc(props.id);
+    }
+    
 
-    return (
+
+    
+    return(
         <div className="row scheduleTask mb-2">
             <div className="col-3 col-md-3">
-                <img className="image" onClick={handleClick} src={props.src} />
+                <img className="image" src={props.src} />
             </div>
-
+            
             <div className="col-3 col-md-3">
-                {props.completed === 0 && <button className="btn btn-success" >Mark as complete</button>}
-            </div>
-            <div className="col-3 col-md-3">
-                <button className="btn btn-danger" onClick={handleClick}>Delete</button>
-            </div>
-
+            {props.completed === 0 &&<button className="btn btn-success" onClick={handleClickCompleted} >Mark as complete</button>}
+        </div>
+        <div className="col-3 col-md-3">
+            <button className="btn btn-danger" onClick={handleClickDelete}>Delete</button>
+        </div>
+             
 
         </div>
 
 
-    )
-
+    ) 
+   
 }
 
 
