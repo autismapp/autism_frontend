@@ -4,31 +4,15 @@ import React from 'react';
 
 
 function ScheduleTask(props) {
-
-
-
-    const handleClick = () => {
-        console.log("buttom pressed")
-    }
-
+    const handleAddClick = () => {
+        console.log('CLICK HANDLED');
+        props.addActivity(props.id);
+    };
 
     return (
-        <div className="row scheduleTask mb-2">
-            <div className="col-3 col-md-3">
-                <img className="image" onClick={handleClick} src={props.src} />
-            </div>
-
-            <div className="col-3 col-md-3">
-                {props.completed === 0 && <button className="btn btn-success" >Mark as complete</button>}
-            </div>
-            <div className="col-3 col-md-3">
-                <button className="btn btn-danger" onClick={handleClick}>Delete</button>
-            </div>
-
-
-        </div>
-
-
+        <a className="dropdown-item" href="#">
+            <img src={"https://autism-app-images.s3-eu-west-1.amazonaws.com/" + props.imageUrl} height="85px" width="85px" onClick={handleAddClick} />
+        </a>
     )
 
 }

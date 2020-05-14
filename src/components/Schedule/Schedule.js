@@ -1,121 +1,99 @@
-import React, { useState } from 'react';
-import Activity from './Activity';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
+import "./Schedule.css";
 import ScheduleTask from './ScheduleTask';
 //import ScheduleTask from './ScheduleTask'
 
 
 function Schedule() {
+  const [activityTypes, setActivityTypes] = useState([]);
+  const [activities, setActivities] = useState([]);
 
+  useEffect(() => {
+    axios.get("https://i8wrj1k7nk.execute-api.eu-west-1.amazonaws.com/dev/activity-type")
+      .then(response => {
+        console.log("success", response.data);
+        setActivityTypes(response.data);
+      })
+      .catch(err => {
+        console.log("Error", err);
+      });
+  }, []);
 
-  const [activities, setTasks] = useState([
+  const addNewActivity = (id, imageUrl) => {
+      console.log('Inside addNewActivity');
+      axios.post("https://i8wrj1k7nk.execute-api.eu-west-1.amazonaws.com/dev/activity", {
+         "activity_type_id": 1
+      })
+      .then(response => {
+        console.log('Got response from Axios');
+        const newActivity = response.data;
 
-    {
-      id: 1,
-      text: 'homeworks',
-      src: './images/homeworks.jpg',
-    },
+        const newActivities = [...activities, newActivity];
+        setActivities(newActivities);
 
-    {
-      id: 2,
-      text: 'play outside',
-      src: './images/play_outside.jpg',
-    },
-    {
-      id: 3,
-      text: 'shower',
-      src: './images/shower.jpg',
-    },
+        console.log(newActivities);
+      })
+      .catch(err => {
+        console.log("Error creating tasks", err);
+      });
 
-  ])
-
-
-
-
-  function handleAddActivity() {
-    activities.map((activity) => {
-      console.log(activity)
-      console.log(activity.src)
-      return activity;
-
-    });
-  }
-
-
-
-  const [ScheduleTasks, setTasks1] = useState([
-    {
-      id: 1,
-      text: "breakfast",
-      src: './images/breakfast.jpg',
-      Completed: 0
-    },
-    {
-      id: 2,
-      text: "bush the hair",
-      src: './images/brush_hair.jpg',
-      Completed: 1
-    },
-    {
-      id: 3,
-      text: "Get up",
-      src: './images/get_up.jpg',
-      Completed: 0
-    }
-  ])
-
-
-
-  /* {activities.map((activity) =>{
-  
-                      return <Activity
-                      key = {activity.id}
-                      text={activity.text}
-                       src ={activity.src}
-  
-                        />
-                        })}*/
+  };
 
   return (
-
-
     <div className="Schedule">
-
-      <h1>ACTION TO ADD IN THE Schedule</h1>
       <div className="container">
+        <h1>ACTION TO ADD IN THE Schedule</h1>
         <div className="row">
           <div className="col col-6">
-            Add an Activity to the Schedule
-                  </div>
-          <div className="col col-6">
-            <button type="button" className="btn btn-primary" onClick={handleAddActivity}>Add activity</button>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Activity Types
+            </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {
+                  activityTypes.map((activityType) => {
+                    return <ScheduleTask imageUrl={activityType.image_url}
+                                          id={activityType.id}
+                                          addActivity={addNewActivity} />
+                  })
+                }
+              </div>
+            </div>
           </div>
+
         </div>
 
         <div className="row">
           <div className="col col-12">
-
-
-            Photos of the activities, when you press the button Add activity 
+            Photos of the activities, when you press the button Add activity
             you can see here the pictures, of the activities that you can choose to add in your Schedule
-
-
-
           </div>
-
         </div>
-      <h1>Schedule</h1>
+        <h1>Schedule</h1>
 
-        {ScheduleTasks.map((task)=>{
+        <div className="row scheduleTask mb-2">
+          <div className="col-3 col-md-3">To Do</div>
+          <div className="col-3 col-md-3"></div>
+          <div className="col-3 col-md-3">Completed</div>
+        </div>
 
-            return <ScheduleTask
-            key = {task.id}
-            text = {task.text}
-            src = {task.src}
-            completed = {task.Completed}
-          />
-        })}
-      
-      
+        <div className="row scheduleTask mb-2">
+            <div className="col-3 col-md-3">
+                <img className="image" src="images/homeworks.jpg" />
+            </div>
+
+            <div className="col-3 col-md-3">
+                <button className="btn btn-success">DONE</button>
+            </div>
+            <div className="col-3 col-md-3">
+                <img className="image" src="images/school.jpg" />
+            </div>
+        </div>
+
+
+
       </div>
 
     </div>
