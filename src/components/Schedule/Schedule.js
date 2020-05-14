@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Activity from './Activity';
 import ScheduleTask from './ScheduleTask';
 //import { act } from '@testing-library/react';
-//import ScheduleTask from './ScheduleTask'
 
 
 function Schedule() {
@@ -38,19 +37,16 @@ function Schedule() {
   const [ScheduleTasks, setTasks] = useState([
     {
       id: 1,
-      text: "breakfast",
       src: './images/breakfast.jpg',
       Completed: 0
     },
     {
       id: 2,
-      text: "bush the hair",
       src: './images/brush_hair.jpg',
       Completed: 1
     },
     {
       id: 3,
-      text: "Get up",
       src: './images/get_up.jpg',
       Completed: 0
     }
@@ -61,7 +57,7 @@ function Schedule() {
     
     const completedTask = ScheduleTasks.map((task)=>{
       if(task.id ===id ){
-        task.Completed = true;
+        task.Completed = 1;
       }
       return task;
     })
@@ -81,6 +77,19 @@ function Schedule() {
     })
       // update the state with the new array
     setTasks(filteredTasks)
+  }
+
+  const addNewtask = (src) =>{
+    
+    const newTask = {
+      id: 8,
+      src:src,
+      Completed:0
+    };
+
+    const newSchedule = [...ScheduleTasks, newTask];
+
+    setTasks(newSchedule);
   }
 
   return (
@@ -106,6 +115,7 @@ function Schedule() {
             { showResults ? 
               activities.map((act)=>{
                 return <Activity 
+                addNewTaskFunc = {addNewtask}
                 key = {act.id}
                 id = {act.id}
                 src = {act.src}
@@ -117,6 +127,13 @@ function Schedule() {
         </div>
 
       <h1>Schedule</h1>
+
+        <div className="row scheduleTask mb-2">
+          <div className="col-3 col-md-3">To Do</div>
+          <div className="col-3 col-md-3">Done</div>
+          <div className="col-3 col-md-3">Delete</div>
+          <div className="col-3 col-md-3">Completed</div>
+        </div>
 
         {ScheduleTasks.map((task)=>{
 
