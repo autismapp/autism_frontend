@@ -22,13 +22,13 @@ function Navbar() {
     return (
       <div class="App">
   
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-success">
               
-              <a className="navbar-brand" href="#">Autism</a>
+              <a className="navbar-brand" href="#"></a>
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
-              <div className="collapse navbar-collapse" id="navbarNav">
+              <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul className="navbar-nav">
                   <li className="nav-item active">
                     <NavLink to="/">
@@ -37,12 +37,12 @@ function Navbar() {
                   </li>
                   <li className="nav-item">
                     <NavLink to="/schedule">
-                    <a className="nav-link" href="">Schedule</a>
+                    <a className="nav-link" href="">My Schedule</a>
                     </NavLink>
                   </li>
                   <li className="nav-item">
                     <NavLink to="/FeelingsMenu">
-                    <a className="nav-link" href="">Mood</a>
+                    <a className="nav-link" href="">My Mood</a>
                     </NavLink>
                    
                   </li>
