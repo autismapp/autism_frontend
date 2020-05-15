@@ -6,7 +6,7 @@ import Schedule from './components/Schedule/Schedule'
 import Home from './components/Home/Home'
 import mood from './images/mood.svg'
 import wait from './images/wait.svg'
-import logo from './images/Frame1.png'
+import logo from './images/Frame 1.png'
 import Navbar from './components/Navbar';
 import {Route, Link, Switch} from 'react-router-dom';
 

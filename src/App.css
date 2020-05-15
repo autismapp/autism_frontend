@@ -1,7 +1,77 @@
-.App {
-  margin-top: 15px;
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Philosopher&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+
+.main {
+    font-family: 'Caveat Brush', cursive;
+    text-align: center;
+} 
+
+.main img {
+  width: 900px;
+  height: 350px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
-.App .navbar-brand {
-  font-weight: bold;
+.image1 {
+  float: left;
+  width: 33.3%;
+  padding-bottom: 40px;
 }
+
+.image2 {
+  float: left;
+  width: 33.3%;
+  padding-bottom: 40px;
+}
+
+
+.nav-link {
+  font-family: 'Caveat Brush', cursive;
+  display: inline-block;
+  font-size: 30px;
+  
+}
+
+.title {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  font-size: 45px;
+  color: gray;
+}
+
+.menutitle {
+  font-family: 'Caveat Brush', cursive;
+  display: inline-block;
+  color: gray;
+  text-align: center;
+  padding-top: 70px;
+  padding-bottom: 40px;
+  margin-left: 12%;
+}
+
+.feelingsh1 {
+  font-size: 60px;
+}
+
+.feelingsh2 {
+  font-size: 50px;
+  padding-bottom: 70px;
+}
+
+.angry {
+  float: left;
+  width: 33%;
+}
+
+.worried {
+  float: left;
+  width: 33%;
+}
+
+.sad {
+  float: left;
+  width: 33%;
+}
+
+
