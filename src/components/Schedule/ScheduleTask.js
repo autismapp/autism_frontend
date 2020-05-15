@@ -5,7 +5,7 @@ import React from 'react';
 
 function ScheduleTask(props) {
     const handleAddClick = () => {
-        console.log('CLICK HANDLED');
+        console.log('CLICK HANDLED: ', props.id);
         props.addActivity(props.id);
     };
 

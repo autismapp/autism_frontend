@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import "./Schedule.css";
 import ScheduleTask from './ScheduleTask';
-//import ScheduleTask from './ScheduleTask'
+import Activity from './Activity';
 
 
 function Schedule() {
@@ -18,8 +18,7 @@ function Schedule() {
       .catch(err => {
         console.log("Error", err);
       });
-  }, []);
-  useEffect(() => {
+
     axios.get("https://i8wrj1k7nk.execute-api.eu-west-1.amazonaws.com/dev/activity/")
       .then(response => {
         console.log("success", response.data);
@@ -31,11 +30,10 @@ function Schedule() {
   }, []);
 
 
-  const addNewActivity = (id, imageUrl) => {
-      console.log('Inside addNewActivity');
-      axios.post("https://i8wrj1k7nk.execute-api.eu-west-1.amazonaws.com/dev/activity", {
-         "activity_type_id": 1
-      })
+  const addNewActivity = (id) => {
+    axios.post("https://i8wrj1k7nk.execute-api.eu-west-1.amazonaws.com/dev/activity", {
+      "activity_type_id": id
+    })
       .then(response => {
         console.log('Got response from Axios');
         const newActivity = response.data;
@@ -48,13 +46,39 @@ function Schedule() {
       .catch(err => {
         console.log("Error creating tasks", err);
       });
+  };
 
+  const markTaskCompleted = (id) => {
+    axios.put(`https://i8wrj1k7nk.execute-api.eu-west-1.amazonaws.com/dev/activity/${id}`, { completed: 1 }).then(response => {
+      const updatedActivities = activities.map((activity) => {
+        if (activity.activity_id === id) {
+          activity.completed = 1;
+        }
+        return activity;
+      });
+
+      setActivities(updatedActivities);
+    });
+  };
+
+  const deleteTask = (id) => {
+    axios.delete(`https://i8wrj1k7nk.execute-api.eu-west-1.amazonaws.com/dev/activity/${id}`).then(response => {
+      const filteredActivities = activities.filter((activity) => {
+        if (activity.activity_id === id) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+
+      setActivities(filteredActivities);
+    });
   };
 
   return (
     <div className="Schedule">
       <div className="container">
-        <h1>ACTION TO ADD IN THE Schedule</h1>
+        <h1>My Schedule</h1>
         <div className="row">
           <div className="col col-6">
             <div class="dropdown">
@@ -66,46 +90,35 @@ function Schedule() {
                 {
                   activityTypes.map((activityType) => {
                     return <ScheduleTask imageUrl={activityType.image_url}
-                                          id={activityType.id}
-                                          addActivity={addNewActivity} />
+                      id={activityType.activity_type_id}
+                      addActivity={addNewActivity} />
                   })
                 }
               </div>
             </div>
           </div>
-
         </div>
 
-        <div className="row">
-          <div className="col col-12">
-            
-          </div>
-        </div>
-      
 
         <div className="row scheduleTask mb-2">
           <div className="col-3 col-md-3">To Do</div>
-          <div className="col-3 col-md-3"></div>
+          <div className="col-3 col-md-3">Done</div>
+          <div className="col-3 col-md-3">Delete</div>
           <div className="col-3 col-md-3">Completed</div>
         </div>
 
-        <div className="row scheduleTask mb-2">
-            <div className="col-3 col-md-3">
-                <img className="image" src="images/homeworks.jpg" />
-            </div>
-
-            <div className="col-3 col-md-3">
-                <button className="btn btn-success">DONE</button>
-            </div>
-            <div className="col-3 col-md-3">
-                <img className="image" src="images/school.jpg" />
-            </div>
-        </div>
-
-
+        {activities.map((activity) => {
+          return <Activity
+            deleteTaskFunc={deleteTask}
+            updateTaskFunc={markTaskCompleted}
+            key={activity.activity_id}
+            id={activity.activity_id}
+            src={activity.image_url}
+            completed={activity.completed}
+          />
+        })}
 
       </div>
-
     </div>
   )
 }
