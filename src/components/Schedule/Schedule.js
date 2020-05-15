@@ -1,58 +1,161 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Activity from './Activity';
-//import ScheduleTask from './ScheduleTask'
+import ScheduleTask from './ScheduleTask';
+//import { act } from '@testing-library/react';
 
 
-function Schedule(){
+function Schedule() {
+
+
   
-  
-  const [activities, setTasks] = useState([
+  const [activities] = useState([
 
-        { 
-          id: 1,
-          text: 'breakfast', 
-          src: './images/breakfast.jpg',  
-        },
-    
-        { 
-          id: 2,
-          text: 'brush the hair', 
-          src: './images/brush_hair.jpg',  
-        },
-        { 
-          id: 3,
-          text: 'Get up', 
-          src: './images/get_up.jpg',  
-        },
-    
-      ])
+    {
+      id: 1,
+      text: 'homeworks',
+      src: './images/homeworks.jpg',
+    },
 
-      
+    {
+      id: 2,
+      text: 'play outside',
+      src: './images/play_outside.jpg',
+    },
+    {
+      id: 3,
+      text: 'shower',
+      src: './images/shower.jpg',
+    },
 
-    return (
-        <div className="Schedule">
-          
-            <h1>ACTION TO ADD IN THE Schedule</h1>
-            <h2>Press an action to add in the Shedule</h2>
-          
+  ])
 
-              <main>
-                  {activities.map((activity) =>{
+  const [showResults, setShowResults] = useState(false)
 
-                    return <Activity
-                            key = {activity.id}
-                            text={activity.text}
-                            src ={activity.src}
-                    
-                    />
-                  })}
-              </main>
+  const handleAddActivity = () => setShowResults(true)
 
-        </div>
-    ) 
+
+  const [ScheduleTasks, setTasks] = useState([
+    {
+      id: 1,
+      src: './images/breakfast.jpg',
+      Completed: 0
+    },
+    {
+      id: 2,
+      src: './images/brush_hair.jpg',
+      Completed: 1
+    },
+    {
+      id: 3,
+      src: './images/get_up.jpg',
+      Completed: 0
     }
-    export default Schedule;
+  ])
 
 
-
+  const markTaskCompleted = (id) =>{
     
+    const completedTask = ScheduleTasks.map((task)=>{
+      if(task.id ===id ){
+        task.Completed = 1;
+      }
+      return task;
+    })
+
+    setTasks(completedTask)
+  }
+
+
+  const deleteTask = (id) =>{
+
+    const filteredTasks = ScheduleTasks.filter((task)=>{
+      if(task.id === id){
+        return false;
+      }else{
+        return true;
+      }
+    })
+      // update the state with the new array
+    setTasks(filteredTasks)
+  }
+
+  const addNewtask = (src) =>{
+    
+    const newTask = {
+      id: 8,
+      src:src,
+      Completed:0
+    };
+
+    const newSchedule = [...ScheduleTasks, newTask];
+
+    setTasks(newSchedule);
+  }
+
+  return (
+
+
+    <div className="Schedule">
+
+      <h1>ACTION TO ADD IN THE Schedule</h1>
+      <div className="container">
+        <div className="row">
+          <div className="col col-6">
+            Add an Activity to the Schedule
+                  </div>
+          <div className="col col-6">
+            <button type="button" className="btn btn-primary" onClick={handleAddActivity}>Add activity</button>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col col-12">
+
+          
+            { showResults ? 
+              activities.map((act)=>{
+                return <Activity 
+                addNewTaskFunc = {addNewtask}
+                key = {act.id}
+                id = {act.id}
+                src = {act.src}
+                />
+                
+              }) : null }
+
+          </div>
+        </div>
+
+      <h1>Schedule</h1>
+
+        <div className="row scheduleTask mb-2">
+          <div className="col-3 col-md-3">To Do</div>
+          <div className="col-3 col-md-3">Done</div>
+          <div className="col-3 col-md-3">Delete</div>
+          <div className="col-3 col-md-3">Completed</div>
+        </div>
+
+        {ScheduleTasks.map((task)=>{
+
+            return <ScheduleTask
+
+            deleteTaskFunc={deleteTask}
+            updateTaskFunc={markTaskCompleted}
+            key = {task.id}
+            id ={task.id}
+            text = {task.text}
+            src = {task.src}
+            completed = {task.Completed}
+          />
+        })}
+        
+      
+      </div>
+
+    </div>
+  )
+}
+export default Schedule;
+
+
+
