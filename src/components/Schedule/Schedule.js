@@ -19,6 +19,17 @@ function Schedule() {
         console.log("Error", err);
       });
   }, []);
+  useEffect(() => {
+    axios.get("https://i8wrj1k7nk.execute-api.eu-west-1.amazonaws.com/dev/activity/")
+      .then(response => {
+        console.log("success", response.data);
+        setActivities(response.data);
+      })
+      .catch(err => {
+        console.log("Error", err);
+      });
+  }, []);
+
 
   const addNewActivity = (id, imageUrl) => {
       console.log('Inside addNewActivity');
@@ -67,11 +78,10 @@ function Schedule() {
 
         <div className="row">
           <div className="col col-12">
-            Photos of the activities, when you press the button Add activity
-            you can see here the pictures, of the activities that you can choose to add in your Schedule
+            
           </div>
         </div>
-        <h1>Schedule</h1>
+      
 
         <div className="row scheduleTask mb-2">
           <div className="col-3 col-md-3">To Do</div>
