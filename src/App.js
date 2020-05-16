@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import FeelingsMenu from './components/FeelingsMenu/FeelingsMenu'
+import AngryFeeling from './components/AngryFeeling/AngryFeeling'
 import Schedule from './components/Schedule/Schedule'
 import Home from './components/Home/Home'
 import mood from './images/mood.svg'
@@ -52,6 +53,7 @@ function App(){
         <Route path="/" component={Home} exact />
         <Route path="/Schedule" component={Schedule}/>
         <Route path="/FeelingsMenu" component={FeelingsMenu} />
+        <Route path="/AngryFeeling" component={AngryFeeling} />
       </Switch>
       
     
