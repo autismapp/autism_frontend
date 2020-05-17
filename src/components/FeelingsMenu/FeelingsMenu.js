@@ -12,19 +12,19 @@ function FeelingsMenu() {
         
             <div className="angry">
                 <NavLink to="/AngryFeeling">
-                <a href = ""><img src={angry} alt="angry" /></a>
+                    <img src={angry} alt="angry" />
                 </NavLink> 
             </div>
 
             <div className="sad">
                 <NavLink to="/AngryFeeling">
-                <a href = ""><img src={sad} alt="sad" /></a>
+                    <img src={sad} alt="sad" />
                 </NavLink> 
             </div>
 
             <div className="worried">
                 <NavLink to="/AngryFeeling">
-                <a href = ""><img src={worried} alt="worried" /></a>
+                    <img src={worried} alt="worried" />
                 </NavLink> 
             </div>
 

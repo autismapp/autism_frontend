@@ -12,16 +12,18 @@ function Home(){
             <h2 className="title">Click on the left image below to tell us how you're feeling today. 
                 <br></br>Or hit the image on the right to update your very own schedule.</h2> 
 
-            <div className="image1">
-                <NavLink to="/FeelingsMenu">
-                <a href = ""><img src={mood} alt="mood" /></a>
-                </NavLink> 
-            </div>    
-          
-            <div className="image2">
-                <NavLink to="/schedule">
-                <a href = ""><img src={wait} alt="wait" /></a>
-                </NavLink> 
+            <div style={{margin: "auto"}}>
+                <div className="image1">
+                    <NavLink to="/FeelingsMenu">
+                        <img src={mood} alt="mood" />
+                    </NavLink> 
+                </div>    
+            
+                <div className="image2">
+                    <NavLink to="/schedule">
+                        <img src={wait} alt="wait" />
+                    </NavLink> 
+                </div>
             </div>
             
         </div>
