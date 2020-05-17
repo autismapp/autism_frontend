@@ -1,18 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Handlee&family=Philosopher&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
 
-.App {
-  font-family: 'Caveat Brush', cursive;
-  color: gray;
-  font-size: 30px;
-}
-
-.App .h1 {
-  padding-top: 30px;
-}
-
-
-
 .main {
     font-family: 'Caveat Brush', cursive;
     text-align: center;
@@ -37,6 +25,7 @@
   padding-bottom: 40px;
 }
 
+/* Feelings Menu Page */
 
 .nav-link {
   font-family: 'Caveat Brush', cursive;
@@ -86,4 +75,60 @@
   width: 33%;
 }
 
+/* Angry Feelings Page */
 
+.told {
+  font-family: 'Caveat Brush', cursive;
+  color: gray;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 60px;
+}
+
+.feelingtitle {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.nextstep {
+  font-family: 'Caveat Brush', cursive;
+  color: gray;
+  text-align: center;
+  padding-top: 70px;
+  padding-bottom: 40px;
+  font-size: 60px;
+}
+
+.quiet {
+  font-family: 'Caveat Brush', cursive;
+  color: black;
+  font-size: 60px;
+  float: left;
+  width: 33.3%;
+  padding-bottom: 40px;
+  margin-left: 100px;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.quiet img {
+  padding-top: 50px;
+}
+
+.help {
+  font-family: 'Caveat Brush', cursive;
+  color: black;
+  font-size: 60px;
+  float: left;
+  width: 33.3%;
+  padding-bottom: 40px;
+  text-align: center;
+  margin-left: 200px;
+  padding-top: 10px;
+}
+
+.help img {
+  padding-top: 50px;
+}
